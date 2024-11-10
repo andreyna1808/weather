@@ -6,6 +6,8 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { TableListComponent } from './components/table-list/table-list.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { TranslationService } from './services/translation.service';
+import { Observable } from 'rxjs';
 
 declare var bootstrap: any;
 
@@ -38,7 +40,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     { value: 'en', label: 'English', flag: 'assets/en-flag.png' },
   ];
 
-  constructor(private weatherService: WeatherService) {}
+  translations$: Observable<any>;
+
+  constructor(
+    private weatherService: WeatherService,
+    private translationService: TranslationService
+  ) {
+    this.translations$ = this.translationService.translations$;
+  }
 
   ngOnInit() {
     this.loadWeatherData();
@@ -77,17 +86,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   changeLanguage(lang: string) {
     this.lang = lang;
+    this.translationService.changeLanguage(lang);
     this.loadWeatherData();
   }
 
   onCityFilterChange(cityFilter: string) {
     this.cityFilter = cityFilter;
-    this.loadWeatherData(); // Recarrega os dados ao mudar o filtro
+    this.loadWeatherData();
   }
 
   onDateFilterChange(dateFilter: string) {
     this.dateFilter = dateFilter;
-    this.loadWeatherData(); // Recarrega os dados ao mudar o filtro
+    this.loadWeatherData();
   }
 
   getFlagUrl(lang: string): string {

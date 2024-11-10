@@ -1,0 +1,15 @@
+{
+  "filterByCity": "Filter por cidade",
+  "table": {
+    "date": "Data",
+    "city": "Cidade",
+    "temperature": "Temperatura (°C)",
+    "summary": "Resumo",
+    "noDataMessage": "Nenhum dado disponível"
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Próximo",
+    "recordsPerPage": "Registros por página"
+  }
+}
