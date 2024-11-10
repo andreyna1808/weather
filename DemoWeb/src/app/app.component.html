@@ -1,0 +1,36 @@
+<main class="main">
+  <div class="weather-list">
+    <div class="filters">
+      <input
+        [(ngModel)]="cityFilter"
+        placeholder="Filtrar por cidade"
+        (input)="loadWeatherData()"
+      />
+      <input
+        [(ngModel)]="dateFilter"
+        type="date"
+        (change)="loadWeatherData()"
+      />
+
+      <app-dropdown
+        [lang]="lang"
+        [languageOptions]="languageOptions"
+        (languageChanged)="changeLanguage($event)"
+      />
+    </div>
+
+    <app-table-list [forecasts]="forecasts" />
+
+    <div class="pagination">
+      <button (click)="changePage(page - 1)" [disabled]="page === 1">
+        Anterior
+      </button>
+      <button
+        (click)="changePage(page + 1)"
+        [disabled]="page * pageSize >= totalRecords"
+      >
+        Próxima
+      </button>
+    </div>
+  </div>
+</main>
