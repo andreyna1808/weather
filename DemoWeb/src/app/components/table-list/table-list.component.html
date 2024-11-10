@@ -1,0 +1,18 @@
+<table class="weather-table">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Cidade</th>
+      <th>Temperatura (°C)</th>
+      <th>Resumo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let forecast of forecasts">
+      <td>{{ forecast.date | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ forecast.city }}</td>
+      <td>{{ forecast.temperatureC }}°C</td>
+      <td>{{ forecast.summary }}</td>
+    </tr>
+  </tbody>
+</table>
