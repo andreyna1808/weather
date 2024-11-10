@@ -1,10 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { WeatherService } from './services/weather.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { TableListComponent } from './components/table-list/table-list.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { FiltersComponent } from './components/filters/filters.component';
+
 declare var bootstrap: any;
 
 @Component({
@@ -12,10 +14,11 @@ declare var bootstrap: any;
   standalone: true,
   imports: [
     RouterOutlet,
-    FormsModule,
     CommonModule,
     DropdownComponent,
     TableListComponent,
+    PaginationComponent,
+    FiltersComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -62,6 +65,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
   }
 
+  updatePageSize(size: number) {
+    this.pageSize = size;
+    this.loadWeatherData();
+  }
+
   changePage(page: number) {
     this.page = page;
     this.loadWeatherData();
@@ -70,6 +78,16 @@ export class AppComponent implements OnInit, AfterViewInit {
   changeLanguage(lang: string) {
     this.lang = lang;
     this.loadWeatherData();
+  }
+
+  onCityFilterChange(cityFilter: string) {
+    this.cityFilter = cityFilter;
+    this.loadWeatherData(); // Recarrega os dados ao mudar o filtro
+  }
+
+  onDateFilterChange(dateFilter: string) {
+    this.dateFilter = dateFilter;
+    this.loadWeatherData(); // Recarrega os dados ao mudar o filtro
   }
 
   getFlagUrl(lang: string): string {

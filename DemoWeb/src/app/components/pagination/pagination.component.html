@@ -1,0 +1,36 @@
+<div class="pagination">
+  <div>
+    <button (click)="changePage(page - 1)" [disabled]="page === 1">
+      Anterior
+    </button>
+    <button
+      (click)="changePage(page + 1)"
+      [disabled]="page * pageSize >= totalRecords"
+    >
+      Próxima
+    </button>
+  </div>
+
+  <div>
+    <button
+      class="btn-select dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      {{ pageSize }} registros por página
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li>
+        <a class="dropdown-item" href="#" (click)="updatePageSize(5)">5</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#" (click)="updatePageSize(10)">10</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#" (click)="updatePageSize(15)">15</a>
+      </li>
+    </ul>
+  </div>
+</div>
