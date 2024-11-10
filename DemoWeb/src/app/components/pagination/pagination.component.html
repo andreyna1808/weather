@@ -1,13 +1,13 @@
 <div class="pagination">
   <div>
     <button (click)="changePage(page - 1)" [disabled]="page === 1">
-      Anterior
+      {{ translations?.pagination?.previous || "Anterior" }}
     </button>
     <button
       (click)="changePage(page + 1)"
       [disabled]="page * pageSize >= totalRecords"
     >
-      Próxima
+      {{ translations?.pagination?.next || "Próxima" }}
     </button>
   </div>
 
@@ -19,7 +19,8 @@
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
-      {{ pageSize }} registros por página
+      {{ pageSize }}
+      {{ translations?.pagination?.recordsPerPage || "Registros por página" }}
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <li>

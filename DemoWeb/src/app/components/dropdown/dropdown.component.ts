@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-dropdown',
@@ -14,7 +15,10 @@ export class DropdownComponent {
     [];
   @Output() languageChanged = new EventEmitter<string>();
 
+  constructor(private translationService: TranslationService) {}
+
   changeLanguage(lang: string) {
+    this.translationService.changeLanguage(lang);
     this.languageChanged.emit(lang);
   }
 

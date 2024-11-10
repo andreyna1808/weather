@@ -1,7 +1,7 @@
 <div class="filters">
   <input
     [(ngModel)]="cityFilter"
-    placeholder="Filtrar por cidade"
+    [placeholder]="cityFilterPlaceholder"
     (input)="onCityFilterChange()"
   />
   <input [(ngModel)]="dateFilter" type="date" (change)="onDateFilterChange()" />

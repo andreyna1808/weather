@@ -1,0 +1,14 @@
+{
+  "filterByCity": "Filter by city",
+  "table": {
+    "date": "Date",
+    "city": "City",
+    "temperature": "Temperature (°C)",
+    "summary": "Summary"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "recordsPerPage": "Records per page"
+  }
+}
