@@ -14,7 +14,7 @@ namespace WeatherApi.Services
             "Salvador",
             "Brasília",
             "Curitiba",
-            "Mato Grosso"
+            "Mato Grosso",
         };
 
         private readonly Dictionary<string, string[]> summariesByLanguage =
@@ -66,17 +66,15 @@ namespace WeatherApi.Services
                 ))
                 .ToList();
 
-            if (date.HasValue)
-            {
+            if (date.HasValue) {
                 forecasts = forecasts
                     .Where(f => f.Date == DateOnly.FromDateTime(date.Value))
                     .ToList();
             }
 
-            if (!string.IsNullOrEmpty(city))
-            {
+            if (!string.IsNullOrEmpty(city)) {
                 forecasts = forecasts
-                    .Where(f => f.City.Equals(city, StringComparison.OrdinalIgnoreCase))
+                    .Where(f => f.City.Contains(city, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
 
