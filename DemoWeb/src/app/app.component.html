@@ -1,15 +1,11 @@
 <main class="main">
   <div class="weather-list">
     <div class="filters">
-      <input
-        [(ngModel)]="cityFilter"
-        placeholder="Filtrar por cidade"
-        (input)="loadWeatherData()"
-      />
-      <input
-        [(ngModel)]="dateFilter"
-        type="date"
-        (change)="loadWeatherData()"
+      <app-filters
+        [cityFilter]="cityFilter"
+        [dateFilter]="dateFilter"
+        (cityFilterChange)="onCityFilterChange($event)"
+        (dateFilterChange)="onDateFilterChange($event)"
       />
 
       <app-dropdown
@@ -21,16 +17,12 @@
 
     <app-table-list [forecasts]="forecasts" />
 
-    <div class="pagination">
-      <button (click)="changePage(page - 1)" [disabled]="page === 1">
-        Anterior
-      </button>
-      <button
-        (click)="changePage(page + 1)"
-        [disabled]="page * pageSize >= totalRecords"
-      >
-        Próxima
-      </button>
-    </div>
+    <app-pagination
+      [page]="page"
+      [pageSize]="pageSize"
+      [totalRecords]="totalRecords"
+      (pageChange)="changePage($event)"
+      (pageSizeChange)="updatePageSize($event)"
+    />
   </div>
 </main>
